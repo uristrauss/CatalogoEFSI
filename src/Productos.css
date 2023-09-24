@@ -1,0 +1,46 @@
+/* Add this to your main CSS file or create a separate CSS file */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+    gap: 20px; /* Adjust the gap between products */
+    margin: 20px;
+  }
+  
+  /* Productos.css */
+
+.product {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    /* Ensure a fixed size for each product */
+    width: 300px; /* Adjust as needed */
+  }
+  
+  .product-image {
+    /* Control the image size within the product */
+    max-width: 100%;
+    height: auto;
+    /* Define the desired size for all images */
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+  }
+  
+  .product-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .detail-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .detail-button:hover {
+    background-color: #0056b3;
+  }
+  
