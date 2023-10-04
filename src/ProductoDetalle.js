@@ -1,5 +1,27 @@
 import React, { useState } from 'react';
-import './ProductoDetalle.css'; 
+/*import './ProductoDetalle.css'; */
+import { useProduto } from './contextProductos';
+
+
+/*
+function ProductoDetalle(){
+  const {productoData}  = useProduto();
+
+  if (!productoData){
+    return <div>Cargando...</div>;
+  }
+
+
+
+  return (
+    <div>
+      <h2>{productoData.name}</h2>
+      
+    </div>
+  )
+}
+
+*/
 
 function ProductoDetalle() {
   const [name, setName] = useState('Rick The Month');
