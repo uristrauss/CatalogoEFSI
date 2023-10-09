@@ -1,51 +1,39 @@
-import React, { useState } from 'react';
-/*import './ProductoDetalle.css'; */
-import { useProduto } from './contextProductos';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './ProductoDetalle.css'; 
+import axios from 'axios';
 
-
-/*
-function ProductoDetalle(){
-  const {productoData}  = useProduto();
-
-  if (!productoData){
-    return <div>Cargando...</div>;
-  }
-
-
-
-  return (
-    <div>
-      <h2>{productoData.name}</h2>
-      
-    </div>
-  )
-}
-
-*/
 
 function ProductoDetalle() {
-  const [name, setName] = useState('Rick The Month');
-  const [description, setDescription] = useState('The greatest duck in existence');
-  const [price, setPrice] = useState(13.13); 
+  const { productId } = useParams(); 
+  const [productoDetalle, setProductoDetalle] = useState(null);
 
+  useEffect(() => {
+    axios
+      .get(`https://dummyjson.com/products/${productId}`)
+      .then((response) => {
+        setProductoDetalle(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching product details from API:', error);
+      });
+  }, [productId]);
+
+  if (!productoDetalle) {
+    return <div>Cargando...</div>; 
+  }
   return (
     <div className="product-detail-container">
       <div className="product-detail-card">
         <img
-          src="https://i.kym-cdn.com/photos/images/original/001/367/150/539.jpg" 
-          alt={name}
+          src={productoDetalle.thumbnail}
+          alt={productoDetalle.title}
           className="product-detail-image"
         />
-        <div className="product-detail-content">
-          <h1 className="product-detail-title">{name}</h1>
-          <h4 className="product-detail-description">{description}</h4>
-          <p className="product-detail-price">Price: ${price}</p>
-
-          <ul className="product-detail-details">
-            <li>Size: Large</li>
-            <li>Color: Yellow</li>
-          </ul>
-        </div>
+        <h2 className="product-detail-title">{productoDetalle.title}</h2>
+        <p className="product-detail-description">{productoDetalle.description}</p>
+        <p className="product-detail-price">$ {productoDetalle.price}</p>
+        <p className="product-detail-brand">Brand: {productoDetalle.brand}</p>
       </div>
     </div>
   );
